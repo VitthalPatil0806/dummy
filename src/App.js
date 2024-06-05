@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Display from './Components/Display';
+import Records from './Components/Records';
+import { useState } from 'react';
+import Addproduct from './Components/Addproduct';
 
 function App() {
+
+  let [flag,setFlag] = useState(false);
+  function funadd(){
+    setFlag(!flag)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path='/display' Component={Records}></Route>
+      </Routes>
+      <input type='button' value='add' onClick={funadd}></input>
+        {
+          flag && <Addproduct/>
+        }
+    </>
   );
 }
 
